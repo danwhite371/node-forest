@@ -1,5 +1,5 @@
 // import { Button } from "@/components/ui/button";
-import { CircleUserRound } from "lucide-react";
+import { CircleUserRound } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,13 +7,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
-import { Button } from "../ui/button";
-import { useLocation } from "../location-provider";
+} from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback } from '@radix-ui/react-avatar';
+import { Button } from '../ui/button';
+import { useLocation } from '../location-provider';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 export function UserDropDown() {
   const { setLocation } = useLocation();
+  const { user, signOut, authStatus } = useAuthenticator((context) => [
+    context.user,
+  ]);
+  console.log('[UserDropDown] user, authStatus', user, authStatus);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -32,14 +38,32 @@ export function UserDropDown() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
+
+        {authStatus === 'authenticated' && user && (
+          <DropdownMenuLabel className="text-sm">
+            {user.signInDetails?.loginId}
+          </DropdownMenuLabel>
+        )}
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onClick={() => {
-            setLocation("signin");
-          }}
-        >
-          Sign in
-        </DropdownMenuItem>
+        {authStatus === 'unauthenticated' && (
+          <DropdownMenuItem
+            onClick={async () => {
+              setLocation('signin');
+            }}
+          >
+            Sign in
+          </DropdownMenuItem>
+        )}
+
+        {authStatus === 'authenticated' && (
+          <DropdownMenuItem
+            onClick={async () => {
+              signOut();
+            }}
+          >
+            Sign out
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

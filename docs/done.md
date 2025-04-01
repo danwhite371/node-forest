@@ -1,0 +1,6 @@
+- [x] Switch to single quotes code style [25]
+- [x] AWS authentication [60]
+- [x] Adding documentation. [60, 40]
+- [x] Create home page. [30, 22]
+- [x] Create login context [50]
+- [x] Enable dark mode toggle [50]

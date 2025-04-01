@@ -1,11 +1,11 @@
-import { ModeToggle } from "../mode-toggle";
-import { UserDropDown } from "./user-dropdown";
-import ContainerWrapper from "./container-wrapper";
-import Footer from "./footer";
-import Header from "./header";
-import MainContent from "./main-content";
-import OuterFrame from "./outer-frame";
-import Container from "./container";
+import { ModeToggle } from '../mode-toggle';
+import { UserDropDown } from './user-dropdown';
+import ContainerWrapper from './container-wrapper';
+import Footer from './footer';
+import Header from './header';
+import MainContent from './main-content';
+import OuterFrame from './outer-frame';
+import Container from './container';
 
 export default function Forum() {
   return (

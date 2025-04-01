@@ -1,6 +1,5 @@
-import { createContext, useContext, useState } from "react";
-
-type Location = "home" | "signin";
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { Location } from '@/types';
 
 type LocationProviderState = {
   location: Location;
@@ -8,7 +7,7 @@ type LocationProviderState = {
 };
 
 const initialState: LocationProviderState = {
-  location: "home",
+  location: 'home',
   setLocation: () => null,
 };
 
@@ -22,17 +21,27 @@ type LocationProviderProps = {
 
 export function LocationProvider({
   children,
-  defaultLocation = "home",
+  defaultLocation = 'home',
 }: LocationProviderProps) {
-  const [location, setLocation] = useState<Location>(defaultLocation);
+  const [location, _setLocation] = useState<Location>(defaultLocation);
+  const [newLocation, setNewLocation] = useState<Location>(defaultLocation);
 
-  const value = {
-    location,
-    setLocation: (location: Location) => {
-      console.log("value.setLocation()");
-      setLocation(location);
-    },
-  };
+  useEffect(() => {
+    console.log('[LocationProvider] useEffect', newLocation);
+    if (newLocation != location) _setLocation(newLocation);
+  }, [newLocation]);
+
+  function setLocation(inLocation: Location) {
+    console.log('[LocationProvider] setNewLocation', inLocation);
+    if (inLocation != location) {
+      setNewLocation(inLocation);
+    }
+  }
+  const value = useMemo(() => ({ location, setLocation }), [location]);
+  // const value = {
+  //   location,
+  //   setLocation,
+  // };
 
   return (
     <LocationProviderContext.Provider value={value}>
@@ -45,7 +54,7 @@ export const useLocation = () => {
   const context = useContext(LocationProviderContext);
 
   if (context === undefined) {
-    throw new Error("useLocation must be used within a LocationProvider");
+    throw new Error('useLocation must be used within a LocationProvider');
   }
 
   return context;

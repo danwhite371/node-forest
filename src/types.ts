@@ -6,4 +6,6 @@ type ClassNameProps = {
   className?: string;
 };
 
-export type { ChildrenProps, ClassNameProps };
+type Location = 'home' | 'signin';
+
+export type { ChildrenProps, ClassNameProps, Location };

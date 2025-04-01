@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { ChildrenProps, ClassNameProps } from "@/types";
+import { cn } from '@/lib/utils';
+import { ChildrenProps, ClassNameProps } from '@/types';
 
 export default function ContainerWrapper({
   children,
@@ -9,7 +9,7 @@ export default function ContainerWrapper({
   return (
     <div
       className={cn(
-        "border-border mx-auto w-full max-w-[1400px] min-[1400px]:border-x min-[1800px]:max-w-[1536px]",
+        'border-border mx-auto w-full max-w-[1400px] min-[1400px]:border-x min-[1800px]:max-w-[1536px]',
         className
       )}
     >
