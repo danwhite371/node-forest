@@ -1,9 +1,5 @@
-- [ ] AWS data - write
-- [ ] Add sign out
-- [ ] Create login page []
-- [ ] Document process. Look at some open source project and take notes and versioning, readme.md, change.log, todo, bugs, that sort of thing.
 - [ ] Create login page
-- [ ] Use custom router, which has a current location and a set location
+- [ ] Document process. Look at some open source project and take notes and versioning, readme.md, change.log, todo, bugs, that sort of thing.
 
 * There should be view only access
 * We have small notes with limited text length.

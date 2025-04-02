@@ -27,12 +27,12 @@ export function LocationProvider({
   const [newLocation, setNewLocation] = useState<Location>(defaultLocation);
 
   useEffect(() => {
-    console.log('[LocationProvider] useEffect', newLocation);
+    // console.log('[LocationProvider] useEffect', newLocation);
     if (newLocation != location) _setLocation(newLocation);
   }, [newLocation]);
 
   function setLocation(inLocation: Location) {
-    console.log('[LocationProvider] setNewLocation', inLocation);
+    // console.log('[LocationProvider] setNewLocation', inLocation);
     if (inLocation != location) {
       setNewLocation(inLocation);
     }

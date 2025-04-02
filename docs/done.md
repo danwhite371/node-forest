@@ -1,3 +1,5 @@
+- [x] AWS Auth (5h)
+- [x] Use custom router, which has a current location and a set location
 - [x] Switch to single quotes code style [25]
 - [x] AWS authentication [60]
 - [x] Adding documentation. [60, 40]

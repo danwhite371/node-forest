@@ -6,8 +6,11 @@ import Header from './header';
 import MainContent from './main-content';
 import OuterFrame from './outer-frame';
 import Container from './container';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 export default function Forum() {
+  const { user } = useAuthenticator((context) => [context.user]);
+  const authenticated = user !== undefined;
   return (
     <OuterFrame>
       <Header>
@@ -15,6 +18,9 @@ export default function Forum() {
           <Container className="flex h-14 justify-between items-center gap-2 md:gap-4">
             <div className="font-bold text-lg">Node Forest</div>
             <div>
+              {authenticated && (
+                <span className="mr-2">{user.signInDetails?.loginId}</span>
+              )}
               <ModeToggle /> <UserDropDown />
             </div>
           </Container>
