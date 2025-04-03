@@ -1,3 +1,5 @@
+- [ ] Switch to google auth
+
 - [ ] Get more than 100 at a time
 
 Update data after adding data. or subscribe

@@ -1,4 +1,5 @@
-- [x] AWS Auth (5h)
+- [x] Subscribe to data changes [1h]
+- [x] AWS Auth (8h)
 - [x] Use custom router, which has a current location and a set location
 - [x] Switch to single quotes code style [25]
 - [x] AWS authentication [60]

@@ -14,24 +14,34 @@ export default function NoteList() {
   ]);
   const authenticated = user != undefined;
 
-  const getData = async () => {
-    const authMode = authenticated ? 'userPool' : 'identityPool';
+  // const getData = async () => {
+  //   const authMode = authenticated ? 'userPool' : 'identityPool';
 
-    const { data, errors } = await client.models.Note00001.list({
-      authMode,
-    });
-    if (errors) {
-      console.error('[NoteList] errors', errors);
-    }
-    if (errors == undefined && data != undefined) {
-      setNotes(data);
-    }
-  };
+  //   const { data, errors } = await client.models.Note00001.list({
+  //     authMode,
+  //   });
+  //   if (errors) {
+  //     console.error('[NoteList] errors', errors);
+  //   }
+  //   if (errors == undefined && data != undefined) {
+  //     setNotes(data);
+  //   }
+  // };
 
   useEffect(() => {
+    let sub: any;
     if (authStatus == 'authenticated' || authStatus == 'unauthenticated') {
-      getData();
+      const authMode = authenticated ? 'userPool' : 'identityPool';
+      sub = client.models.Note00001.observeQuery({ authMode }).subscribe({
+        next: ({ items }) => {
+          console.log('[NoteList] useEffect, items.length', items.length);
+          setNotes(items);
+        },
+      });
     }
+    return () => {
+      if (sub !== undefined) sub.unsubscribe();
+    };
   }, [user, authStatus]);
 
   return (
