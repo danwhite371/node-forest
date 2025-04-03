@@ -2,7 +2,7 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 
-import './App.css';
+import './app.css';
 import { useEffect, useState } from 'react';
 import { Amplify } from 'aws-amplify';
 import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';

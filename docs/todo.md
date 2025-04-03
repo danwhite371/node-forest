@@ -1,5 +1,7 @@
 - [ ] Switch to google auth
-
+  - [ ] Deploy project to AWS
+  - [ ] Start using github's issue tracker
+  - [ ] Setup google identity.
 - [ ] Get more than 100 at a time
 
 Update data after adding data. or subscribe
