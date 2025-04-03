@@ -8,10 +8,15 @@ export default function MainContent({
   className,
 }: ChildrenProps & ClassNameProps) {
   return (
-    <div className={cn('h-full grow', className)}>
+    <div className="h-full grow">
       <ContainerWrapper className="main-height">
-        <Container className="h-full">{children}</Container>
+        <Container className={cn('h-full', className)}>{children}</Container>
       </ContainerWrapper>
     </div>
+    //   <div className={cn('h-full grow', className)}>
+    //   <ContainerWrapper className="main-height">
+    //     <Container className="h-full">{children}</Container>
+    //   </ContainerWrapper>
+    // </div>
   );
 }

@@ -10,12 +10,19 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@radix-ui/react-avatar';
 import { Button } from '../ui/button';
-import { useLocation } from '../location-provider';
-import { useAuthenticator } from '@aws-amplify/ui-react';
+import { Location, signOut, AWSUser } from '@/types';
 
-export function UserDropDown() {
-  const { setLocation } = useLocation();
-  const { user, signOut } = useAuthenticator((context) => [context.user]);
+type UserDropDownProps = {
+  setLocation: (location: Location) => void;
+  signOut: signOut;
+  user: AWSUser;
+};
+export function UserDropDown({
+  setLocation,
+  signOut,
+  user,
+}: UserDropDownProps) {
+  // const { user, signOut } = useAuthenticator((context) => [context.user]);
   // console.log('[UserDropDown] user, authStatus', user);
   const authenticated = user !== undefined;
 

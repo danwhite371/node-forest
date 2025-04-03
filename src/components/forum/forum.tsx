@@ -6,10 +6,16 @@ import Header from './header';
 import MainContent from './main-content';
 import OuterFrame from './outer-frame';
 import Container from './container';
-import { useAuthenticator } from '@aws-amplify/ui-react';
+import AddNoteForm from './add-note-form';
+import NoteList from './note-list';
+import { AWSUser, Location, signOut } from '@/types';
 
-export default function Forum() {
-  const { user } = useAuthenticator((context) => [context.user]);
+type ForumProps = {
+  setLocation: (location: Location) => void;
+  signOut: signOut;
+  user: AWSUser;
+};
+export default function Forum({ setLocation, signOut, user }: ForumProps) {
   const authenticated = user !== undefined;
   return (
     <OuterFrame>
@@ -21,12 +27,20 @@ export default function Forum() {
               {authenticated && (
                 <span className="mr-2">{user.signInDetails?.loginId}</span>
               )}
-              <ModeToggle /> <UserDropDown />
+              <ModeToggle />{' '}
+              <UserDropDown
+                setLocation={setLocation}
+                signOut={signOut}
+                user={user}
+              />
             </div>
           </Container>
         </ContainerWrapper>
       </Header>
-      <MainContent>Main content</MainContent>
+      <MainContent className="flex flex-col justify-center items-center">
+        {authenticated && <AddNoteForm />}
+        <NoteList />
+      </MainContent>
       <Footer className="text-muted-foreground">This is a footer</Footer>
     </OuterFrame>
   );

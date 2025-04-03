@@ -1,4 +1,4 @@
-import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
+import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
@@ -9,22 +9,15 @@ and "delete" any "Todo" records.
 const schema = a.schema({
   Note00001: a
     .model({
-      content: a.string(),
+      content: a.string().required(),
     })
-    .authorization((allow) => [
-      allow.guest().to(["read"]),
-      allow.authenticated().to(["read"]),
-      allow.owner(),
-    ]),
+    .authorization((allow) => [allow.guest().to(['read']), allow.owner()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
 
 export const data = defineData({
   schema,
-  authorizationModes: {
-    defaultAuthorizationMode: "userPool",
-  },
 });
 
 /*== STEP 2 ===============================================================
